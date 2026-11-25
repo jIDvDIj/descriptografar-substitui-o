@@ -1,6 +1,6 @@
 name: Release
 
-# Todo push na main roda os testes, gera o executável e publica uma nova versão.
+# Todo push na main passa pelo CI, gera o executável e publica uma nova versão.
 on:
   push:
     branches: [main]
@@ -14,7 +14,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
   release:
+    needs: ci
     runs-on: windows-latest
     defaults:
       run:
@@ -27,9 +31,6 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-
-      - name: Testes
-        run: python -m unittest -v
 
       - name: Calcular versão
         id: versao

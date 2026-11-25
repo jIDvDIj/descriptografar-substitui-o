@@ -1,0 +1,24 @@
+name: CI
+
+# Roda em todo pull request e é reaproveitado pelo workflow de release,
+# para que a main só publique versões que passaram pelas mesmas verificações.
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    name: Testes
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Testes
+        run: python -m unittest -v

@@ -73,11 +73,25 @@ pyinstaller --onefile --windowed --name DecifradorCesarGrupo4 main.py
 
 O executável fica em `dist/DecifradorCesarGrupo4.exe` e abre direto a interface gráfica.
 
+## Como contribuir
+
+A `main` é protegida: mudanças entram por pull request, e o merge só é liberado depois que o
+workflow [`ci.yml`](.github/workflows/ci.yml) passa.
+
+```bash
+git switch -c minha-mudanca
+# ... edite, rode python -m unittest ...
+git commit -m "fix: descrição da correção"
+git push -u origin minha-mudanca
+gh pr create --fill
+```
+
 ## Releases
 
-Cada push na `main` dispara o workflow [`release.yml`](.github/workflows/release.yml), que
-roda os testes no Windows, gera o `.exe` e publica uma nova versão em
-[Releases](../../releases) com o executável anexado. Se algum teste falhar, nada é publicado.
+Cada push na `main` (inclusive o merge de um pull request) dispara o workflow
+[`release.yml`](.github/workflows/release.yml), que passa pelo mesmo CI dos pull requests,
+gera o `.exe` e publica uma nova versão em [Releases](../../releases) com o executável
+anexado. Se o CI falhar, nada é publicado.
 
 O número da versão segue os commits feitos desde a última release
 ([Conventional Commits](https://www.conventionalcommits.org/pt-br/)):
