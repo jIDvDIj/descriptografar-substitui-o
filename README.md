@@ -73,6 +73,21 @@ pyinstaller --onefile --windowed --name DecifradorCesarGrupo4 main.py
 
 O executável fica em `dist/DecifradorCesarGrupo4.exe` e abre direto a interface gráfica.
 
+## Releases
+
+Cada push na `main` dispara o workflow [`release.yml`](.github/workflows/release.yml), que
+roda os testes no Windows, gera o `.exe` e publica uma nova versão em
+[Releases](../../releases) com o executável anexado. Se algum teste falhar, nada é publicado.
+
+O número da versão segue os commits feitos desde a última release
+([Conventional Commits](https://www.conventionalcommits.org/pt-br/)):
+
+| Commit                                        | Exemplo de versão |
+|-----------------------------------------------|-------------------|
+| `fix:`, `docs:`, `chore:`, `refactor:`, etc.  | 1.0.0 → 1.0.1     |
+| `feat:`                                       | 1.0.1 → 1.1.0     |
+| `feat!:` ou `BREAKING CHANGE:` no corpo       | 1.1.0 → 2.0.0     |
+
 ## Testes de integração com o Grupo 3
 
 | Texto original         | K | Cifrado pelo Grupo 3   | Resultado esperado aqui |
