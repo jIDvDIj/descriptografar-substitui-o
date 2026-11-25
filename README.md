@@ -97,6 +97,9 @@ git push -u origin minha-mudanca
 gh pr create --fill
 ```
 
+O [Dependabot](.github/dependabot.yml) abre toda segunda-feira um pull request com as
+atualizações das GitHub Actions usadas nos workflows. Ele passa pelo mesmo CI antes do merge.
+
 ## Releases
 
 Cada push na `main` (inclusive o merge de um pull request) dispara o workflow
