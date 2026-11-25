@@ -1,0 +1,9 @@
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+extend-exclude = ["build", "dist"]
+
+[tool.ruff.lint]
+# E/W: estilo (pycodestyle), F: erros (pyflakes), I: ordem dos imports,
+# B: armadilhas comuns (bugbear), UP: sintaxe moderna para a versão alvo.
+select = ["E", "W", "F", "I", "B", "UP"]

@@ -28,13 +28,9 @@ def validar_chave(entrada: str) -> int:
     do intervalo são recusados com uma mensagem explicando o motivo.
     """
     if entrada == "":
-        raise ChaveInvalidaError(
-            f"Informe a chave K (inteiro de {CHAVE_MIN} a {CHAVE_MAX})."
-        )
+        raise ChaveInvalidaError(f"Informe a chave K (inteiro de {CHAVE_MIN} a {CHAVE_MAX}).")
     if entrada != entrada.strip():
-        raise ChaveInvalidaError(
-            "Chave inválida: remova os espaços antes ou depois do número."
-        )
+        raise ChaveInvalidaError("Chave inválida: remova os espaços antes ou depois do número.")
     if not _FORMATO_INTEIRO.fullmatch(entrada):
         raise ChaveInvalidaError(
             f'Chave inválida: "{entrada}" não é um número inteiro. '

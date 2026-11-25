@@ -64,6 +64,17 @@ Os testes cobrem os casos de integração da especificação, texto vazio, chave
 acentos, caracteres especiais, quebras de linha e a ida e volta (cifrar e descriptografar)
 para todas as 26 chaves.
 
+### Lint e formatação
+
+O código segue o [ruff](https://docs.astral.sh/ruff/), configurado no `pyproject.toml`. O CI
+recusa pull requests com erro de lint ou fora da formatação.
+
+```bash
+pip install ruff
+ruff check .          # aponta problemas
+ruff format .         # formata o código
+```
+
 ## Gerar executável (.exe)
 
 ```bash
