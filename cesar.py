@@ -9,6 +9,7 @@ Regras seguidas (especificação comum aos grupos 3 e 4):
 """
 
 import re
+from typing import List, Tuple
 
 TAMANHO_ALFABETO = 26
 CHAVE_MIN = 0
@@ -63,3 +64,13 @@ def descriptografar(texto_cifrado: str, k: int) -> str:
             f"Chave inválida: K deve ser um inteiro de {CHAVE_MIN} a {CHAVE_MAX}."
         )
     return "".join(_deslocar_esquerda(c, k) for c in texto_cifrado)
+
+
+def forca_bruta(texto_cifrado: str) -> List[Tuple[int, str]]:
+    """Tenta todas as chaves possíveis e devolve os pares (K, texto decifrado).
+
+    Não faz parte do contrato entre os grupos (que usa a chave K informada):
+    serve para demonstrar que, com só 26 chaves, a cifra de César se quebra
+    testando todas.
+    """
+    return [(k, descriptografar(texto_cifrado, k)) for k in range(CHAVE_MIN, CHAVE_MAX + 1)]
