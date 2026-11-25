@@ -41,6 +41,16 @@ python main.py
 4. Use **Copiar resultado** para levar o texto à área de transferência sem quebras de
    linha extras.
 
+### Força bruta (demonstração)
+
+A aba **Força bruta** mostra por que a cifra de César é fraca: ela decifra o texto com as 26
+chaves possíveis ao mesmo tempo, e basta procurar a linha legível para descobrir K sem
+conhecê-lo. Dê dois cliques numa linha (ou use **Copiar tentativa selecionada**) para copiar
+aquela tentativa.
+
+Esta aba é só uma demonstração. O fluxo combinado com o Grupo 3 continua sendo a aba
+**Descriptografar**, com a chave K informada.
+
 ### Linha de comando
 
 ```bash
@@ -128,8 +138,8 @@ A aprovação exige que o texto recuperado seja igual ao original caractere por 
 ## Estrutura
 
 ```
-cesar.py           validação da chave e descriptografia
-interface.py       interface gráfica (tkinter)
+cesar.py           validação da chave, descriptografia e força bruta
+interface.py       interface gráfica (tkinter), com as abas Descriptografar e Força bruta
 main.py            ponto de entrada (interface gráfica ou linha de comando)
 tests/             testes automatizados (unittest)
 doc/               especificação da atividade

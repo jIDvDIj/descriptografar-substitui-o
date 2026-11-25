@@ -4,7 +4,7 @@ import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from unittest import mock
 
-from cesar import ChaveInvalidaError, descriptografar, validar_chave
+from cesar import ChaveInvalidaError, descriptografar, forca_bruta, validar_chave
 from main import main
 
 
@@ -79,6 +79,25 @@ class TestDescriptografar(unittest.TestCase):
         for k in ("3", 3.0, None, True):
             with self.subTest(k=k), self.assertRaises(ChaveInvalidaError):
                 descriptografar("abc", k)
+
+
+class TestForcaBruta(unittest.TestCase):
+    def test_testa_as_26_chaves_em_ordem(self):
+        resultados = forca_bruta("abc")
+        self.assertEqual([k for k, _ in resultados], list(range(26)))
+
+    def test_a_chave_certa_aparece_entre_as_tentativas(self):
+        resultados = dict(forca_bruta("Dwdtxh dr dpdqkhfhu!"))
+        self.assertEqual(resultados[3], "Ataque ao amanhecer!")
+
+    def test_cada_tentativa_igual_a_descriptografar(self):
+        cifrado = "Fçãr Á é! 123\nXyZ"
+        for k, texto in forca_bruta(cifrado):
+            with self.subTest(k=k):
+                self.assertEqual(texto, descriptografar(cifrado, k))
+
+    def test_texto_vazio(self):
+        self.assertEqual(forca_bruta(""), [(k, "") for k in range(26)])
 
 
 class TestValidarChave(unittest.TestCase):
