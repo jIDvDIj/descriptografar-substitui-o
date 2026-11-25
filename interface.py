@@ -8,6 +8,15 @@ from cesar import CHAVE_MAX, CHAVE_MIN, ChaveInvalidaError, descriptografar, val
 TITULO = "Grupo 4 - Descriptografia por Substituição (César)"
 
 
+def _atalho(acao):
+    # Retornar "break" impede o Tk de também inserir a quebra de linha no campo de texto.
+    def tratar(_evento: tk.Event) -> str:
+        acao()
+        return "break"
+
+    return tratar
+
+
 class JanelaDecifrador:
     def __init__(self, raiz: tk.Tk) -> None:
         self.raiz = raiz
@@ -54,8 +63,8 @@ class JanelaDecifrador:
         self.status = ttk.Label(quadro, text="")
         self.status.grid(row=6, column=0, sticky="w")
 
-        raiz.bind("<Control-Return>", lambda _evento: self.descriptografar())
-        self.campo_chave.bind("<Return>", lambda _evento: self.descriptografar())
+        self.campo_cifrado.bind("<Control-Return>", _atalho(self.descriptografar))
+        self.campo_chave.bind("<Return>", _atalho(self.descriptografar))
         self.campo_cifrado.focus_set()
 
     def _ler_texto_cifrado(self) -> str:
