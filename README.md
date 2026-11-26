@@ -1,7 +1,7 @@
-# Grupo 4 — Descriptografia por Substituição (César)
+# Descriptografia por Substituição (César)
 
 Projeto de software de criptografia/decriptação da disciplina **Segurança em Sistemas
-Computacionais** (Prof. Lauro Alves). A especificação completa está em
+Computacionais**. A especificação completa está em
 [`doc/descrição da atividade.md`](doc/descrição%20da%20atividade.md).
 
 O programa recebe um texto cifrado pelo Grupo 3 e a mesma chave K usada na cifragem, e
